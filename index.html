@@ -14,10 +14,8 @@
       content="Web design, UI/UX, graphic design, web development, and NFT creation."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/hero-prague-night.png" />
     <title>Sina Jalilian — Designer in Prague</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preload" as="image" href="/hero-prague-night.webp" type="image/webp" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -62,16 +60,11 @@
     </header>
 
     <main id="content">
-      <section class="hero" id="top">
-        <div class="shell">
-          <figure class="hero-frame">
-            <img
-              src="/hero-prague-night.webp"
-              alt="Low-poly scene of Sina at his desk on a rainy night in Prague, writing code on a monitor with a website preview on his laptop."
-              width="1280"
-              height="720"
-            />
-          </figure>
+      <section class="hero" id="top" aria-label="Sina at work">
+        <div class="room" id="room">
+          <div class="room-chip" id="room-chip" aria-hidden="true"><i></i><span>Writing HTML</span></div>
+          <p class="room-note">Prague · live</p>
+          <p class="room-fallback">Sina&rsquo;s desk in Prague. This 3D scene needs WebGL.</p>
         </div>
       </section>
 

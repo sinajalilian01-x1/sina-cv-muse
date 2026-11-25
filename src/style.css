@@ -139,6 +139,7 @@ textarea {
 }
 
 .nav-tools {
+  margin-left: 0;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -181,21 +182,92 @@ html[data-theme="dark"] .theme .icon-sun {
 }
 
 .hero {
-  padding: 12px 0 28px;
+  padding: 0;
 }
 
-.hero-frame {
-  margin: 0;
-  border-radius: 24px;
+.room {
+  position: relative;
+  height: clamp(560px, calc(100vh - 68px), 860px);
   overflow: hidden;
-  box-shadow: var(--shadow), 0 0 0 1px var(--line);
-  background: #111;
+  touch-action: pan-y;
+}
+.room canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.room.is-ready canvas {
+  opacity: 1;
 }
 
-.hero-frame img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+.room-chip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  font: 600 12px/1 var(--ui);
+  padding: 7px 11px 7px 9px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.88);
+  color: #2a2622;
+  box-shadow: 0 6px 18px -8px rgba(60, 40, 20, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+  will-change: transform;
+}
+.room.is-ready .room-chip {
+  opacity: 1;
+}
+.room-chip i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 0 3px rgba(22, 163, 156, 0.18);
+}
+html[data-theme="dark"] .room-chip {
+  background: rgba(10, 13, 18, 0.78);
+  color: #e9eef5;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+}
+
+.room-note {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  margin: 0;
+  z-index: 2;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.room-fallback {
+  display: none;
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  place-items: center;
+  text-align: center;
+  padding: 24px;
+}
+.room.no-webgl .room-fallback {
+  display: grid;
 }
 
 .band {
@@ -498,6 +570,9 @@ html[data-theme="dark"] .btn {
   .menu {
     display: grid;
   }
+  .nav-tools {
+    margin-left: auto;
+  }
   .links {
     display: none;
     width: 100%;
@@ -513,8 +588,8 @@ html[data-theme="dark"] .btn {
   .links a {
     padding: 12px 4px;
   }
-  .hero-frame {
-    border-radius: 16px;
+  .room {
+    height: clamp(460px, 72vh, 640px);
   }
   .band {
     padding: 52px 0;

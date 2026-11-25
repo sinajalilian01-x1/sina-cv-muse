@@ -130,3 +130,17 @@ form?.addEventListener("submit", (e) => {
       ".";
   }
 });
+
+// Live 3D room hero (Three.js, Muse Swarm engine kit). Loaded after first paint.
+const roomEl = document.getElementById("room");
+if (roomEl) {
+  const start = () =>
+    import("./hero/room.js")
+      .then(({ mountRoom }) => mountRoom({ container: roomEl, chip: document.getElementById("room-chip") }))
+      .catch((err) => {
+        console.warn("3D room unavailable", err);
+        roomEl.classList.add("no-webgl");
+      });
+  if (document.readyState === "complete") start();
+  else window.addEventListener("load", start, { once: true });
+}
